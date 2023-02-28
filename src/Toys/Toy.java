@@ -20,5 +20,4 @@ public abstract class Toy {
     public void amountDecrement() {this.amount--;}
     public int getAmount() {return amount;}
     public String getName() {return name;}
-    public int getPrice() {return price;}
 }

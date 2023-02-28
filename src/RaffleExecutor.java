@@ -36,9 +36,6 @@ public class RaffleExecutor {
         }
         return false;
     }
-
-
-
     public ArrayList<String> getRaffleResults() {return raffleResults;}
 }
 

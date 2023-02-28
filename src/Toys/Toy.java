@@ -4,6 +4,7 @@ public abstract class Toy {
     protected int id;
     protected int amount;
     protected int chance;
+    protected int chanceRange;
     protected int price;
     protected String name;
 
@@ -13,16 +14,15 @@ public abstract class Toy {
         this.price = price;
     }
 
-    public void setChance(int chance) {
-        if (chance > 100) {
-            this.chance = 100;
-            System.out.println("Chance can't be higher than 100. Chance of drop " + name + " set on 100%");
-            return;
-        }
-        this.chance = chance;
-    }
+    public void setChanceRange(int chanceRange) {this.chanceRange = chanceRange;}
+    public int getChanceRange() {return chanceRange;}
     public int getChance() {return chance;}
     public void amountDecrement() {this.amount--;}
     public int getAmount() {return amount;}
+    public String getName() {return name;}
     public int getPrice() {return price;}
+
+    public void printToy() {
+        System.out.println(this.name + " " + this.chanceRange + " amount: " + this.amount);
+    }
 }

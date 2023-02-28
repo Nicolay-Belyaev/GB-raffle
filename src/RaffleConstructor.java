@@ -1,8 +1,6 @@
 import Toys.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 /**
  * RaffleConstructor serves 2 aims:
@@ -12,15 +10,16 @@ import java.util.LinkedHashMap;
  */
 public class RaffleConstructor {
     int raffleCost;
-    LinkedHashMap<Integer,Toy> allToys = new LinkedHashMap();
+    ArrayList<Toy> allToys = new ArrayList<>();
 
     public RaffleConstructor(int raffleBudget,
                              int amountOfBears, int amountOfDolls, int amountOfTrains, int amountOfTableGames,
                              int chanceOnBear, int chanceOnDoll, int chanceOnTrain, int chanceOnTableGame) {
         Toy teddyBear = new Bear(amountOfBears, chanceOnBear);
         Toy barby = new Doll(amountOfDolls, chanceOnDoll);
-        Toy jenga = new TableGame(amountOfTableGames, chanceOnTableGame);
         Toy thomas = new Train(amountOfTrains, chanceOnTrain);
+        Toy jenga = new TableGame(amountOfTableGames, chanceOnTableGame);
+
 
         raffleCost = amountOfBears * teddyBear.getPrice() +
                 amountOfDolls * barby.getPrice() +
@@ -32,10 +31,17 @@ public class RaffleConstructor {
         if (chanceOnBear + chanceOnDoll + chanceOnTableGame + chanceOnTrain != 100) {
             throw new RuntimeException("Sum of chances on all toys don't equal to 100%. Try again with new chances.");
         }
-        allToys.put(chanceOnBear, teddyBear);
-        allToys.put(allToys. barby);
-        allToys.put(jenga);
-        allToys.put(thomas);
+        allToys.add(teddyBear);
+        allToys.add(barby);
+        allToys.add(thomas);
+        allToys.add(jenga);
+
+        allToys.get(0).setChanceRange(allToys.get(0).getChance());
+        for (int i = 1; i < allToys.size(); i++) {
+            Toy currentToy = allToys.get(i);
+            Toy previousToy = allToys.get(i - 1);
+            currentToy.setChanceRange(previousToy.getChanceRange() + currentToy.getChance());
+        }
     }
 
     public ArrayList<Toy> getAllToys() {return allToys;}

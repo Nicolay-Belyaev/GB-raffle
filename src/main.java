@@ -13,11 +13,7 @@ public class main {
                 33,
                 33);
         ArrayList<Toy> toys = raffle.getAllToys();
-        System.out.println(toys);
         RaffleExecutor executor = new RaffleExecutor(toys);
-        for (Toy toy:toys) {
-            toy.printToy();
-        }
         System.out.println(executor.getRaffleResults());
     }
 }

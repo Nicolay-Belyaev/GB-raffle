@@ -4,6 +4,20 @@ import java.util.ArrayList;
 public class RaffleExecutor {
     private final ArrayList<String> raffleResults = new ArrayList<>();
 
+    public RaffleExecutor(ArrayList<Toy> toys) {
+        int allToysAmount = 0;
+        for (Toy toy:toys) {
+            allToysAmount += toy.getAmount();
+        }
+        while (allToysAmount != 0) {
+            int currentIndex = getRandomToyIndex(toys);
+            boolean win = getToy(currentIndex, toys);
+            if (win) {
+                allToysAmount -= 1;
+            }
+        }
+    }
+
     private int getRandomToyIndex (ArrayList<Toy> toys) {
         int flip = 1 + (int) (Math.random() * 100);
         for (int i = 0; i < toys.size(); i++) {
@@ -23,22 +37,8 @@ public class RaffleExecutor {
         return false;
     }
 
-    public RaffleExecutor(ArrayList<Toy> toys) {
-        int allToysAmount = 0;
-        for (Toy toy:toys) {
-            allToysAmount += toy.getAmount();
-        }
-        while (allToysAmount != 0) {
-            int currentIndex = getRandomToyIndex(toys);
-            boolean win = getToy(currentIndex, toys);
-            if (win) {
-                allToysAmount -= 1;
-            }
-        }
-    }
 
-    public ArrayList<String> getRaffleResults() {
-        return raffleResults;
-    }
+
+    public ArrayList<String> getRaffleResults() {return raffleResults;}
 }
 

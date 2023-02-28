@@ -21,8 +21,4 @@ public abstract class Toy {
     public int getAmount() {return amount;}
     public String getName() {return name;}
     public int getPrice() {return price;}
-
-    public void printToy() {
-        System.out.println(this.name + " " + this.chanceRange + " amount: " + this.amount);
-    }
 }
